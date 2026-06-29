@@ -105,3 +105,34 @@ def get_image_path(target_id):
                             "path": embed_item.get("path")
                         })
     return result
+
+def get_attach_text(target_id):
+    img_ext = ['png','jpg','gif','jpeg','webp','svg','tiff','bmp']
+    date_suffix = str(target_id)[:6]
+    collection_name = f"EMS_MESSAGE_{date_suffix}"
+    collection = db[collection_name]
+    filter_query = {"_id": target_id}
+    projection = {"_id": 0, "attached": 1, "attach": 1}
+    document = collection.find_one(filter_query, projection)
+
+    attach_status = document.get("attached")
+    if attach_status == "N":
+        return []
+
+    result = []
+    if attach_status == "Y":
+        attach_list = document.get("attach")
+        for item in attach_list:
+            ext = str(item.get("ext", "")).lower()
+            if ext in img_ext:
+                continue
+            else:
+                path = item.get("path")
+                if path:
+                    try:
+                        text = get_minio_attach_text(path)
+                        result.append({item.get("name", "unknown"): text})
+                    except Exception as e:
+                        logger.error(f"Failed to read attach text: {e}")
+                        result.append({item.get("name", "unknown"): f"[Error reading file: {e}]"})
+    return result
