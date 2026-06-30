@@ -1,32 +1,19 @@
-# Environment
-.env
-*.env
-
-# Logs
-workspace/ai_process_log/
-*.log
-
 # Python
 __pycache__/
 *.py[cod]
-*$py.class
 *.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
 *.egg-info/
-.installed.cfg
-*.egg
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+ai_process_log/
+*.log
 
 # IDE
 .idea/
@@ -37,3 +24,42 @@ wheels/
 # OS
 .DS_Store
 Thumbs.db
+# >>> git_bulk_push managed (build/cache) >>>
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+*.jks
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+id_dsa*
+id_ecdsa*
+.npmrc
+.pypirc
+.netrc
+credentials
+credentials.json
+*.secret
+secrets.yml
+secrets.yaml
+*service-account*.json
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+node_modules/
+*.egg-info/
+.DS_Store
+.ipynb_checkpoints/
+large_tool_results/
+tool_log/
+.cache/
+# <<< git_bulk_push managed <<<

@@ -7,9 +7,9 @@ services:
       dockerfile: Dockerfile
       network: host
     volumes:
-      - ./workspace:/app
+      - ./workspace:/app:z
     environment:
       - TZ=Asia/Seoul
-    #command: python3 /app/kafka_worker.py
-    command: tail -f /dev/null
+      - PYTHONUNBUFFERED=1
+    command: python3 /app/kafka_worker.py
     restart: always

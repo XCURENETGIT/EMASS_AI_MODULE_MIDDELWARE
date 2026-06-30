@@ -98,3 +98,43 @@ class PiiDetector:
             metadata=None):
         return grpc.experimental.unary_unary(
             request,
+            target,
+            '/xcn.pii.v1.PiiDetector/Detect',
+            pii__pb2.DetectRequest.SerializeToString,
+            pii__pb2.DetectResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def Health(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/xcn.pii.v1.PiiDetector/Health',
+            pii__pb2.HealthRequest.SerializeToString,
+            pii__pb2.HealthResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
