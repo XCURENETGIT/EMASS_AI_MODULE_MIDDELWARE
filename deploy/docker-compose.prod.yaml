@@ -1,0 +1,16 @@
+services:
+  emass-ai-middelware:
+    container_name: emass-ai-middelware
+    image: emass-ai-middelware:prod
+    # 현장 배포용: 빌드하지 않는다. (소스 없음 / 반입한 이미지를 그대로 사용)
+    #  이미지 반입:  ./prod-manage.sh load <이미지파일.tar.gz>
+    #  - .env  : 설정만 읽기전용 마운트 (호스트에서 수정 → restart 로 반영)
+    #  - 로그  : 호스트 폴더로 남겨 컨테이너가 꺼져도 조회 가능
+    volumes:
+      - ./workspace/.env:/app/.env:ro
+      - ./workspace/ai_process_log:/app/ai_process_log:z
+    environment:
+      - TZ=Asia/Seoul
+      - PYTHONUNBUFFERED=1
+    command: python3 /app/run.py
+    restart: always

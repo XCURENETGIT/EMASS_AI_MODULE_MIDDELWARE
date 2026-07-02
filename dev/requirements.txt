@@ -1,0 +1,9 @@
+python-dotenv
+requests
+pymongo
+confluent-kafka
+grpcio
+grpcio-tools
+protobuf
+beautifulsoup4
+minio
